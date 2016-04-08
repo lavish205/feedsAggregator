@@ -18,7 +18,7 @@ class Offerings(models.Model):
     ecommerce = models.ForeignKey(Ecommerce, related_name='offerings')
     product = models.ForeignKey(Product, related_name='offerings')
     price = models.FloatField()
-    url = models.TextField()
+    url = models.URLField()
     last_modified = models.DateTimeField()
 
     class Meta:

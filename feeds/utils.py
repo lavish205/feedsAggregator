@@ -141,6 +141,7 @@ def save_offerings(offering_data):
         # comparing if new data is not outdated
         if new_date <= old_date:
             offering.last_modified = old_date
+            offering.price = offering_data.get('price')
             offering.save()
 
     except Offerings.DoesNotExist:
