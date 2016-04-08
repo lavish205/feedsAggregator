@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# from celery import Celery
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,7 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = (
+DEFAULT_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +39,17 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 )
+
+PROJECT_APPS = (
+    'feeds',
+)
+
+THIRD_PARTY_APPS = (
+    'rest_framework',
+    'djcelery'
+)
+
+INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -104,3 +116,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Celery
+# djcelery.setup_loader()
+
+# BROKER_URL = "redis://localhost:6379/0"
+# celery = Celery(broker=BROKER_URL)
+# CELERY_IMPORTS = ('feeds.tasks',)
+# CELERY_ROUTES = {'feed.tasks.save_feeds': {'queue': 'feeds'}}
