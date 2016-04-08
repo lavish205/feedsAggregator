@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'plivoAssignment.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('PLIVO_MYSQL_NAME'),
+        'USER': os.getenv('PLIVO_MYSQL_USER'),
+        'PASSWORD': os.getenv('PLIVO_MYSQL_PASSWORD'),
+        'HOST': os.getenv('PLIVO_MYSQL_HOST'),
+        'PORT': os.getenv('PLIVO_MYSQL_PORT')
     }
 }
 
