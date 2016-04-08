@@ -1,11 +1,11 @@
+from __future__ import absolute_import
 from collections import defaultdict
-from django.shortcuts import render
 from django.db.models import F
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .utils import csv_parser, json_parser, xml_parser
 from .models import Offerings
 from .tasks import save_feeds
+
 
 class FeedsView(APIView):
     """
@@ -25,10 +25,11 @@ class FeedsView(APIView):
             product_id=F('product__product_id'),
             ecomm_name=F('ecommerce__name'),
             ecomm_id=F('ecommerce__ecomm_id')).values('product_name',
-                                                       'product_id',
-                                                       'ecomm_name',
-                                                       'ecomm_id',
-                                                       'price').order_by('price')
+                                                      'product_id',
+                                                      'ecomm_name',
+                                                      'ecomm_id',
+                                                      'price'
+                                                      ).order_by('price')
         ecommerce = defaultdict(list)
         product = dict()
         for feed in feeds:

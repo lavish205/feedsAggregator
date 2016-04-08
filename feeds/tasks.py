@@ -1,5 +1,7 @@
+from __future__ import absolute_import
 from celery import task
 from .utils import csv_parser, json_parser, xml_parser
+
 
 @task
 def save_feeds(data):

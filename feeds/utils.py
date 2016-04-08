@@ -1,9 +1,10 @@
+from __future__ import absolute_import
 import csv
 import datetime
 import json
+from xml.etree import ElementTree as ET
 from .models import Product, Ecommerce, Offerings
 from .serializers import OfferingSerializer
-from xml.etree import ElementTree as ET
 
 
 def extract_data(feeds):
@@ -134,7 +135,8 @@ def save_offerings(offering_data):
     try:
         offering = Offerings.objects.get(product=product, ecommerce=ecommerce)
 
-        new_date = datetime.datetime.strptime(offering_data['last_modified'], "%Y-%m-%dT%H:%M:%S")
+        new_date = datetime.datetime.strptime(
+            offering_data['last_modified'], "%Y-%m-%dT%H:%M:%S")
 
         # removing the timezone awareness
         old_date = offering.last_modified.replace(tzinfo=None)
