@@ -24,5 +24,5 @@ class FeedsView(APIView):
         :param format: define the output format
         :return:
         """
-        response = save_feeds.delay(self.request.FILES['data'])
-        return Response(response)
+        save_feeds.delay(self.request.FILES['data'])
+        return Response()
