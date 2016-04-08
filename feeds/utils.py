@@ -134,13 +134,13 @@ def save_offerings(offering_data):
     try:
         offering = Offerings.objects.get(product=product, ecommerce=ecommerce)
 
-        old_date = datetime.datetime.strptime(offering_data['last_modified'], "%Y-%m-%dT%H:%M:%S")
+        new_date = datetime.datetime.strptime(offering_data['last_modified'], "%Y-%m-%dT%H:%M:%S")
 
         # removing the timezone awareness
-        new_date = offering.last_modified.replace(tzinfo=None)
+        old_date = offering.last_modified.replace(tzinfo=None)
         # comparing if new data is not outdated
-        if new_date <= old_date:
-            offering.last_modified = old_date
+        if old_date <= new_date:
+            offering.last_modified = new_date
             offering.price = offering_data.get('price')
             offering.save()
 
