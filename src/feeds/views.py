@@ -39,8 +39,8 @@ class FeedsView(APIView):
         :param format: define the output format
         :return: return 201
         """
-        save_feeds.delay(self.request.FILES['data'])
-        return Response(status=201)
+        save_feeds.delay(self.request.FILES.get('data'))
+        return render(request, 'index.html')
 
 
 class FeedsDetailView(APIView):

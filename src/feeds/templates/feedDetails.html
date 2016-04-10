@@ -12,9 +12,13 @@
 <body>
 <div class="container">
     <div class="row">
-    <h1 align="center">{{ name }}</h1>
+    <a href="/api/v1/feeds/" style="text-decoration: none">
+        <h1 align="center">Feed Aggregator Platform</h1>
+    </a>
+    <hr>
+    <h3 align="center">{{ name }}</h3>
     {% for ecomm in ecomms %}
-        <div class="col-md-12">
+        <div class="col-lg-offset-1 col-md-10">
         <div class="well">
             <a href={{ ecomm.url }}>
                 <li><b>{{ ecomm.name }}</b>: {{ ecomm.price }}</li>
