@@ -1,58 +1,72 @@
 from __future__ import absolute_import
-from collections import defaultdict
-from django.db.models import F
+from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Offerings
+from .models import Offerings, Product
 from .tasks import save_feeds
 
 
 class FeedsView(APIView):
     """
-    API endpoint that add and list feeds
+    API endpoint that allow you to search and list feeds
     """
     def get(self, request, format=None):
         """
-        List all feeds based on ranking order by price
+        List all feeds
         :param request: request object
         :param format: define the output format
         :return: list of feeds
         """
         query = self.request.query_params.get('query')
-        feeds = Offerings.objects.filter(
-            product__name__contains=query).annotate(
-            product_name=F('product__name'),
-            product_id=F('product__product_id'),
-            ecomm_name=F('ecommerce__name'),
-            ecomm_id=F('ecommerce__ecomm_id')).values('product_name',
-                                                      'product_id',
-                                                      'ecomm_name',
-                                                      'ecomm_id',
-                                                      'price'
-                                                      ).order_by('price')
-        ecommerce = defaultdict(list)
-        product = dict()
-        for feed in feeds:
-            product[feed['product_id']] = feed['product_name']
-            ecommerce[feed['product_id']].append(
-                {
-                    'ecomm_name': feed['ecomm_name'],
-                    'price': feed['price']
-                }
-            )
-        response = defaultdict(dict)
-        for k, v in product.iteritems():
-            response[k]['product_name'] = v
-            response[k]['ecomm'] = ecommerce[k]
+        if not query:
+            return render(request, 'index.html')
 
-        return Response(dict(response))
+        products = Product.objects.filter(name__contains=query)
+        response = list()
+        for product in products:
+            response.append({
+                'name': product.name,
+                'id': product.product_id
+            })
+        print response
+        context = {'response': response}
+        return render(request, 'index.html', context)
 
     def post(self, request, format=None):
         """
         Parse .xml .json and .csv feed and store it in our data store
         :param request: request object
         :param format: define the output format
-        :return:
+        :return: return 201
         """
         save_feeds.delay(self.request.FILES['data'])
-        return Response()
+        return Response(status=201)
+
+
+class FeedsDetailView(APIView):
+    """
+    API endpoint that provide details of feed
+    """
+    def get(self, request, pk, format=None):
+        """
+        provide details of selected feed based on ranking order by price
+        :param request: request object
+        :param pk: pk of feed
+        :param format: format of output
+        :return: 200, and details of feed
+        """
+        try:
+            feed = Product.objects.get(pk=pk)
+            offerings = feed.offerings.all().order_by('price')
+            response = dict()
+            response["name"] = feed.name
+            response["ecomms"] = list()
+            for offering in offerings:
+                response["ecomms"].append({
+                    "name": offering.ecommerce.name,
+                    "price": offering.price,
+                    "url": offering.url
+                })
+            return render(request, 'feedDetails.html', response)
+        except Product.DoesNotExist:
+            return Response(status=404)

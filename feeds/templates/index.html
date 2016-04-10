@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <style></style>
+    <title>Feed Aggregator</title>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <br>
+    <br>
+    <div class="well">
+        <form method="get" action="http://127.0.0.1:8000/api/v1/feeds/">
+            <input type="text" name="query">
+            <input type="submit" value="submit">
+        </form>
+    </div>
+    {% if response %}
+        {% for feed in response %}
+            <div class="well">
+                <a href="http://127.0.0.1:8000/api/v1/feeds/{{ feed.id }}/">{{ feed.name }}</a></br>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+
+{#{{ response }}#}
+</body>
+</html>

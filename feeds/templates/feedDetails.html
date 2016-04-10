@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style></style>
+    <title>{{ name }} Details</title>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+    <h1 align="center">{{ name }}</h1>
+    {% for ecomm in ecomms %}
+        <div class="col-md-12">
+        <div class="well">
+            <a href={{ ecomm.url }}>
+                <li><b>{{ ecomm.name }}</b>: {{ ecomm.price }}</li>
+            </a>
+        </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
