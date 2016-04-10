@@ -14,7 +14,7 @@
     <br>
     <br>
     <div class="well">
-        <form method="get" action="http://127.0.0.1:8000/api/v1/feeds/">
+        <form method="get" action="/api/v1/feeds/">
             <input type="text" name="query">
             <input type="submit" value="submit">
         </form>
@@ -22,7 +22,7 @@
     {% if response %}
         {% for feed in response %}
             <div class="well">
-                <a href="http://127.0.0.1:8000/api/v1/feeds/{{ feed.id }}/">{{ feed.name }}</a></br>
+                <a href="/api/v1/feeds/{{ feed.id }}/">{{ feed.name }}</a></br>
             </div>
         {% endfor %}
     {% endif %}
