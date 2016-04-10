@@ -1,0 +1,21 @@
+ansible_ssh_user: ubuntu
+
+remote_timezone: 'Asia/Kolkata'
+
+project_name: feedAggregator
+project_root: /srv
+project_src: src
+
+repo_url: git@github.com:lavish205/feedsAggregator.git
+repo_remote: origin
+repo_branch: master
+python_requirements_file: "{{project_root}}/{{project_name}}/{{ project_src }}/requirements.txt"
+
+
+environment_variables:
+  PRODUCTION:
+    export PLIVO_MYSQL_PORT: 3306
+    export PLIVO_MYSQL_PASSWORD: password
+    export PLIVO_MYSQL_USER: root
+    export PLIVO_MYSQL_NAME: plivo
+    export PLIVO_MYSQL_HOST: 127.0.0.1

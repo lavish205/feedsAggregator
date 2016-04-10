@@ -1,0 +1,30 @@
+- name: create root project directory
+  file: path=/srv/ owner={{ ansible_ssh_user }} group={{ ansible_ssh_user }} mode=0775 state=directory
+  sudo: yes
+  tags:
+    - setup
+    - web
+
+- name: deploy code from repository
+  action: git accept_hostkey=yes repo={{ repo_url }} dest={{ project_root }}/{{ project_name }} remote={{ repo_remote }} version={{repo_branch}}
+  tags:
+    - setup
+    - deploy
+    - web
+
+
+- name: Fix for pip bug
+  sudo: yes
+  shell: rm -rf /usr/local/lib/python2.7/dist-packages/requests*
+  tags:
+    - setup
+    - deploy
+    - web
+
+- name: install python dependencies
+  sudo: yes
+  action: pip requirements={{ python_requirements_file }}
+  tags:
+    - setup
+    - deploy
+    - web

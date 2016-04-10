@@ -1,0 +1,17 @@
+#vars/main.yml
+
+system_packages:
+  - htop
+  - python-pip
+  - tree
+  - htop
+  - build-essential
+  - git
+  - python-dev
+  - libmysqlclient-dev
+  - uwsgi-plugin-python
+  - libssl-dev
+  - libffi-dev
+  - python-mysqldb
+  - redis-server
+  - supervisor

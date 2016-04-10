@@ -1,0 +1,29 @@
+- name: Copy plivo celery file
+  sudo: yes
+  template: src=celeryd.conf.j2 dest=/etc/supervisor/conf.d/celeryd.conf owner=root group=root mode=0755
+  tags:
+    - web
+    - setup
+    - celery
+    - config
+
+
+- name: Copy supervisor file
+  sudo: yes
+  template: src=supervisord.conf.j2 dest=/etc/supervisor/conf.d/supervisord.conf owner=root group=root mode=0755
+  tags:
+    - web
+    - setup
+    - celery
+    - config
+
+- name: Restart supervisor
+  service: name=supervisor state=restarted
+  sudo: yes
+  tags:
+    - setup
+    - supervisor
+    - celery
+    - config
+
+

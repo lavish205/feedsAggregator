@@ -1,0 +1,21 @@
+[uwsgi]
+vhost           = true
+plugins         = python
+chdir           = {{project_root}}/{{project_name}}/{{ project_src }}/
+socket          = /tmp/plivo.sock
+master          = true
+enable-threads  = true
+processes       = {{ ansible_processor_vcpus * 2 }}
+threads 		= 1
+wsgi-file       = {{project_root}}/{{project_name}}/{{ project_src }}/{{project_name}}/wsgi.py
+
+env = DEPLOYMENT_TYPE={{ DEPLOYMENT_TYPE }}
+{% if DEPLOYMENT_TYPE == 'STAGING' %}
+    {% set env_var = environment_variables.STAGING %}
+{% else %}
+    {% set env_var = environment_variables.PRODUCTION %}
+{% endif %}
+
+{% for key, value in env_var.items() %}
+env = {{key}}={{value}}
+{% endfor %}

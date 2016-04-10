@@ -1,0 +1,29 @@
+- name: Installs uWsgi
+  apt: pkg=uwsgi state=installed update-cache=yes
+  sudo: yes
+  tags:
+    - setup
+    - uwsgi
+
+- name: Install uwsgi python plugin
+  apt: pkg=uwsgi-plugin-python state=installed update-cache=yes
+  sudo: yes
+  tags:
+    - setup
+    - uwsgi
+
+- name: put uwsgi file in app-enabled
+  template: src=plivo.ini.j2 dest=/etc/uwsgi/apps-enabled/plivo.ini
+  sudo: yes
+  tags:
+    - setup
+    - uwsgi
+    - config
+
+- name: restart uwsgi
+  service: name=uwsgi state=restarted
+  sudo: yes
+  tags: 
+    - setup
+    - uwsgi 
+    - deploy

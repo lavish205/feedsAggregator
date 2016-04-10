@@ -1,0 +1,7 @@
+- hosts: plivo
+  roles:
+    - common
+    - nginx
+    - web
+    - uwsgi
+#    - celery
