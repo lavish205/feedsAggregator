@@ -17,5 +17,5 @@ def save_feeds(data):
             'text/csv': csv_parser,
         }
     parser = content_type[data.content_type]
-    parser(data)
+    parser.delay(data)
     return response

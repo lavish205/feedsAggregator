@@ -2,11 +2,12 @@ from __future__ import absolute_import
 import csv
 import datetime
 import json
+from celery import task
 from xml.etree import ElementTree as ET
 from .models import Product, Ecommerce, Offerings
-from .serializers import OfferingSerializer
 
 
+@task
 def extract_data(feeds):
     """
     extract required data from feeds.
@@ -40,7 +41,7 @@ def extract_data(feeds):
         }
         save_offerings(offering_query_data)
 
-
+@task
 def json_parser(data):
     """
     parse json data
@@ -52,7 +53,7 @@ def json_parser(data):
     feeds = json.loads(data.file.getvalue())
     return extract_data(feeds)
 
-
+@task
 def xml_parser(data):
     """
     xml file parser
@@ -147,11 +148,4 @@ def save_offerings(offering_data):
             offering.save()
 
     except Offerings.DoesNotExist:
-        offering_data['product'] = product.product_id
-        offering_data['ecommerce'] = ecommerce.ecomm_id
-        off_ser = OfferingSerializer(data=offering_data)
-        if off_ser.is_valid():
-            off_ser.save()
-        else:
-            print off_ser.errors
-        # Ecommerce.objects.create(**offering_data)
+        Offerings.objects.create(**offering_data)
