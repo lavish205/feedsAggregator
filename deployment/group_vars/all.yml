@@ -2,7 +2,7 @@ ansible_ssh_user: ubuntu
 
 remote_timezone: 'Asia/Kolkata'
 
-project_name: feedAggregator
+project_name: feedsAggregator
 project_root: /srv
 project_src: src
 
@@ -14,8 +14,8 @@ python_requirements_file: "{{project_root}}/{{project_name}}/{{ project_src }}/r
 
 environment_variables:
   PRODUCTION:
-    export PLIVO_MYSQL_PORT: 3306
-    export PLIVO_MYSQL_PASSWORD: password
-    export PLIVO_MYSQL_USER: root
-    export PLIVO_MYSQL_NAME: plivo
-    export PLIVO_MYSQL_HOST: 127.0.0.1
+    PLIVO_MYSQL_PORT: 3306
+    PLIVO_MYSQL_PASSWORD: password
+    PLIVO_MYSQL_USER: root
+    PLIVO_MYSQL_NAME: plivo
+    PLIVO_MYSQL_HOST: 127.0.0.1
