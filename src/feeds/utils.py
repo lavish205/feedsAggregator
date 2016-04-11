@@ -7,7 +7,6 @@ from xml.etree import ElementTree as ET
 from .models import Product, Ecommerce, Offerings
 
 
-@task
 def extract_data(feeds):
     """
     extract required data from feeds.
@@ -41,6 +40,7 @@ def extract_data(feeds):
         }
         save_offerings(offering_query_data)
 
+
 @task
 def json_parser(data):
     """
@@ -51,7 +51,8 @@ def json_parser(data):
     print "in json parser"
     # deserializing into python
     feeds = json.loads(data.file.getvalue())
-    return extract_data.delay(feeds)
+    return extract_data(feeds)
+
 
 @task
 def xml_parser(data):
@@ -93,6 +94,7 @@ def xml_parser(data):
     print products
     return products, ecommerces
 
+
 @task
 def csv_parser(data):
     """
@@ -101,7 +103,7 @@ def csv_parser(data):
     :return:
     """
     feeds = csv.DictReader(data.file)
-    return extract_data.delay(feeds)
+    return extract_data(feeds)
 
 
 def save_products(product_data):
