@@ -93,7 +93,7 @@ def xml_parser(data):
     print products
     return products, ecommerces
 
-
+@task
 def csv_parser(data):
     """
     csv file parser
