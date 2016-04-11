@@ -4,56 +4,73 @@
     <meta charset="UTF-8">
     <style></style>
     <title>Feed Aggregator</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Lato, sans-serif;
+        }
+    </style>
 </head>
-<style>
-    .well{
-        padding: 12px !important;
-        margin: 10px;
-    }
-</style>
 <body>
 <div class="container">
     <div class="row"></div>
+    <div class="page-header">
     <a href="/api/v1/feeds/" style="text-decoration: none">
         <h1 align="center">Feed Aggregator Platform</h1>
+
     </a>
+    </div>
+
     <div class="row"></div></br>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-7">
             <form method="get", action="/api/v1/feeds/">
                 <div class="form-group">
                     <label for="inputsearch">Enter Product Name</label>
-                    <input type="text" class="form-control" id="inputsearch" placeholder="Search Here..." name="query">
+                    <input type="text" class="form-control" id="inputsearch" placeholder="Search Here..." name="query" value={{ query }}>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
-        <div class="col-md-3">
-            <form method="post" action="/api/v1/feeds/">
+        <div class="col-xs-offset-1 col-md-4">
+            <form method="post" action="/api/v1/feeds/" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="inputFile">Upload feeds from here</label>
-                <input type="file" id="inputFile" name=data>
+                <input type="file" id="inputFile" name="data">
                 <p class="help-block">.xml, .json or .csv files only</p>
               </div>
               <button type="submit" class="btn btn-success">Submit</button>
+                {% if uploaded %}
+                    <span class="alert-success well-sm">
+                        <i class="glyphicon glyphicon-ok"></i>
+                        Uploaded
+                    </span>
+                {% endif %}
             </form>
         </div>
     </div>
     <br><hr>
     <div class="row">
-    {% if response %}
+    <div class="col-md-7">
+    {% if  query and response %}
         <ul class="list-group">
         {% for feed in response %}
-            <li class="list-group-item col-xs-offset-1 col-xs-10">
+            <li class="list-group-item">
                 <a href="/api/v1/feeds/{{ feed.id }}/">{{ feed.name }}</a></br>
             </li>
         {% endfor %}
         </ul>
+        {% elif search %}
+            <p class="well-lg alert-danger" align="center">
+                <i class="glyphicon glyphicon-remove-circle"></i>
+                No results
+            </p>
     {% endif %}
+    </div>
     </div>
 </div>
 

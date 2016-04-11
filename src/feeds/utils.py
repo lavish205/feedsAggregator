@@ -51,7 +51,7 @@ def json_parser(data):
     print "in json parser"
     # deserializing into python
     feeds = json.loads(data.file.getvalue())
-    return extract_data(feeds)
+    return extract_data.delay(feeds)
 
 @task
 def xml_parser(data):
@@ -101,7 +101,7 @@ def csv_parser(data):
     :return:
     """
     feeds = csv.DictReader(data.file)
-    return extract_data(feeds)
+    return extract_data.delay(feeds)
 
 
 def save_products(product_data):

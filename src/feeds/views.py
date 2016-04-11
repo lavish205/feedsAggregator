@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Offerings, Product
+from .models import Product
 from .tasks import save_feeds
 
 
@@ -19,17 +19,18 @@ class FeedsView(APIView):
         """
         query = self.request.query_params.get('query')
         if not query:
-            return render(request, 'index.html')
+            context = {'query': ''}
+            return render(request, 'index.html', context)
 
         products = Product.objects.filter(name__contains=query)
         response = list()
         for product in products:
             response.append({
-                'name': product.name,
+                'name': product.name.upper(),
                 'id': product.product_id
             })
         print response
-        context = {'response': response}
+        context = {'response': response, "query": query, "search": True}
         return render(request, 'index.html', context)
 
     def post(self, request, format=None):
@@ -40,7 +41,8 @@ class FeedsView(APIView):
         :return: return 201
         """
         save_feeds.delay(self.request.FILES.get('data'))
-        return render(request, 'index.html')
+        context = {'uploaded': True}
+        return render(request, 'index.html', context)
 
 
 class FeedsDetailView(APIView):
@@ -59,7 +61,7 @@ class FeedsDetailView(APIView):
             feed = Product.objects.get(pk=pk)
             offerings = feed.offerings.all().order_by('price')
             response = dict()
-            response["name"] = feed.name
+            response["name"] = feed.name.upper()
             response["ecomms"] = list()
             for offering in offerings:
                 response["ecomms"].append({

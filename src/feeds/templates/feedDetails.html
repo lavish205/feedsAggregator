@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <style></style>
     <title>{{ name }} Details</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Lato, sans-serif;
+        }
+    </style>
 </head>
+
 <body>
 <div class="container">
     <div class="row">
@@ -16,16 +23,23 @@
         <h1 align="center">Feed Aggregator Platform</h1>
     </a>
     <hr>
-    <h3 align="center">{{ name }}</h3>
-    {% for ecomm in ecomms %}
-        <div class="col-lg-offset-1 col-md-10">
-        <div class="well">
-            <a href={{ ecomm.url }}>
-                <li><b>{{ ecomm.name }}</b>: {{ ecomm.price }}</li>
-            </a>
-        </div>
-        </div>
-    {% endfor %}
+    <div class="col-sm-offset-2 col-md-8">
+        <h3 align="center">{{ name }}</h3>
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>Seller</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            {% for ecomm in ecomms %}
+                <tr>
+                    <td><a href={{ ecomm.url }}> {{ ecomm.name }}</a></td>
+                    <td>Rs {{ ecomm.price }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
     </div>
 </div>
 
