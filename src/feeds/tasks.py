@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 from celery import task
+from django.shortcuts import render
 from .utils import csv_parser, json_parser, xml_parser
 
 
@@ -16,6 +17,9 @@ def save_feeds(data):
             'text/xml': xml_parser,
             'text/csv': csv_parser,
         }
-    parser = content_type[data.content_type]
+    try:
+        parser = content_type[data.content_type]
+    except Exception:
+        pass
     parser.delay(data)
     return response

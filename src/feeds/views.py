@@ -40,9 +40,13 @@ class FeedsView(APIView):
         :param format: define the output format
         :return: return 201
         """
-        save_feeds.delay(self.request.FILES.get('data'))
-        context = {'uploaded': True}
-        return render(request, 'index.html', context)
+        try:
+            save_feeds.delay(self.request.FILES.get('data'))
+            context = {'uploaded': True}
+            return render(request, 'index.html', context)
+        except Exception:
+            context = {'error': True}
+            return render(request, 'index.html', context)
 
 
 class FeedsDetailView(APIView):
