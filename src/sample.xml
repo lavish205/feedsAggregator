@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+   <element>
+      <ecomm_id>1</ecomm_id>
+      <ecomm_portal>Amazon</ecomm_portal>
+      <ecomm_url>http://amazon.in/</ecomm_url>
+      <last_updated>2016-04-11T15:23:15</last_updated>
+      <price>22000</price>
+      <product_id>10</product_id>
+      <product_name>htc one</product_name>
+   </element>
+   <element>
+      <ecomm_id>2</ecomm_id>
+      <ecomm_portal>Flipkart</ecomm_portal>
+      <ecomm_url>http://flipkart.com/</ecomm_url>
+      <last_updated>2016-04-10T15:23:15</last_updated>
+      <price>12000</price>
+      <product_id>10</product_id>
+      <product_name>htc one</product_name>
+   </element>
+   <element>
+      <ecomm_id>3</ecomm_id>
+      <ecomm_portal>SnapDeal</ecomm_portal>
+      <ecomm_url>http://snapdeal.com/</ecomm_url>
+      <last_updated>2016-04-10T15:23:15</last_updated>
+      <price>16000</price>
+      <product_id>1</product_id>
+      <product_name>samsung galaxy s1</product_name>
+   </element>
+   <element>
+      <ecomm_id>1</ecomm_id>
+      <ecomm_portal>Amazon</ecomm_portal>
+      <ecomm_url>http://amazon.in/</ecomm_url>
+      <last_updated>2016-04-10T15:23:15</last_updated>
+      <price>12000</price>
+      <product_id>3</product_id>
+      <product_name>moto x</product_name>
+   </element>
+   <element>
+      <ecomm_id>2</ecomm_id>
+      <ecomm_portal>FlipKart</ecomm_portal>
+      <ecomm_url>http://flipkart.com/</ecomm_url>
+      <last_updated>2016-04-10T15:23:15</last_updated>
+      <price>21000</price>
+      <product_id>16</product_id>
+      <product_name>iphone 5s</product_name>
+   </element>
+   <element>
+      <ecomm_id>1</ecomm_id>
+      <ecomm_portal>Amazon</ecomm_portal>
+      <ecomm_url>http://amazon.in/</ecomm_url>
+      <last_updated>2016-04-10T15:24:15</last_updated>
+      <price>20000</price>
+      <product_id>16</product_id>
+      <product_name>iphone 5s</product_name>
+   </element>
+   <element>
+      <ecomm_id>2</ecomm_id>
+      <ecomm_portal>FlipKart</ecomm_portal>
+      <ecomm_url>http://flipkart.in/</ecomm_url>
+      <last_updated>2016-04-10T15:24:15</last_updated>
+      <price>22000</price>
+      <product_id>15</product_id>
+      <product_name>oneplus 2</product_name>
+   </element>
+</root>

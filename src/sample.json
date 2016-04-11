@@ -1,0 +1,65 @@
+[
+{
+	"product_name": "htc one",
+	"product_id": 10,
+	"ecomm_id": 1,
+	"ecomm_portal": "Amazon",
+	"ecomm_url": "http://amazon.in/",
+	"price": 22000,
+	"last_updated": "2016-04-11T15:23:15"
+},
+{
+	"product_name": "htc one",
+	"product_id": 10,
+	"ecomm_id": 2,
+	"ecomm_portal": "Flipkart",
+	"ecomm_url": "http://flipkart.com/",
+	"price": 12000,
+	"last_updated": "2016-04-10T15:23:15"
+},
+{
+	"product_name": "samsung galaxy s1",
+	"product_id": 1,
+	"ecomm_id": 3,
+	"ecomm_portal": "SnapDeal",
+	"ecomm_url": "http://snapdeal.com/",
+	"price": 16000,
+	"last_updated": "2016-04-10T15:23:15"
+},
+{
+	"product_name": "moto x",
+	"product_id": 3,
+	"ecomm_id": 1,
+	"ecomm_portal": "Amazon",
+	"ecomm_url": "http://amazon.in/",
+	"price": 12000,
+	"last_updated": "2016-04-10T15:23:15"
+},
+{
+	"product_name": "iphone 5s",
+	"product_id": 16,
+	"ecomm_id": 2,
+	"ecomm_portal": "FlipKart",
+	"ecomm_url": "http://flipkart.com/",
+	"price": 21000,
+	"last_updated": "2016-04-10T15:23:15"
+},
+{
+	"product_name": "iphone 5s",
+	"product_id": 16,
+	"ecomm_id": 1,
+	"ecomm_portal": "Amazon",
+	"ecomm_url": "http://amazon.in/",
+	"price": 20000,
+	"last_updated": "2016-04-10T15:24:15"
+},
+{
+	"product_name": "oneplus 2",
+	"product_id": 15,
+	"ecomm_id": 2,
+	"ecomm_portal": "FlipKart",
+	"ecomm_url": "http://flipkart.in/",
+	"price": 22000,
+	"last_updated": "2016-04-10T15:24:15"
+}
+]

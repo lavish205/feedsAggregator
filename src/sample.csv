@@ -1,0 +1,8 @@
+product_name,product_id,ecomm_id,ecomm_portal,ecomm_url,price,last_updated
+htc one,10,1,Amazon,http://amazon.in/,22000,2016-04-10T15:23:15
+htc one,10,2,Flipkart,http://flipkart.com/,12000,2016-04-10T15:23:15
+samsung galaxy s1,1,3,SnapDeal,http://snapdeal.com/,16000,2016-04-10T15:23:15
+moto x,3,1,Amazon,http://amazon.in/,12000,2016-04-10T15:23:15
+moto x,3,2,FlipKart,http://flipkart.com/,11000,2016-04-10T15:23:15
+moto turbo,5,1,Amazon,http://amazon.in/,11000,2016-04-10T15:24:15
+oneplus one,14,2,FlipKart,http://flipkart.in/,27000,2016-04-10T15:24:15
